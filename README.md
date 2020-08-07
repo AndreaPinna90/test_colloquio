@@ -3,7 +3,7 @@
 <strong>TECNOLOGIE USATE:</strong>
 - Front-end = Vue.js
 - Back-end = Node/Express
-- Database = MOngoDB
+- Database = MongoDB
 
 <strong>ISTRUZIONI:</strong>
 - Installare i node modules
