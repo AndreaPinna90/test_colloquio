@@ -6,7 +6,6 @@
 - Database = MongoDB
 
 <strong>ISTRUZIONI:</strong>
-- Installare i node modules
 - Aprire il terminale nella cartella del progetto ed eseguire il comendo "npm run serve" -> http://localhost:8080/
 - Aprire un nuovo terminale nella cartella "test_colloquio/backend" ed eseguire il comando "npm start" oppure "nodemon" -> http://localhost:3000/clicker
 - Have fun! :)
