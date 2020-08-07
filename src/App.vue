@@ -1,28 +1,69 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+      <h1>Clicker APP</h1>
+      <button class="btn btn-primary" type="submit" @click="submit">
+        CLICK ME
+      </button>
+      <p>Total clicks: {{ counter }}</p>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  data() {
+    return {
+      counter: 0,
+      clickData: {
+        clicked_at: "",
+        ip_address: "",
+        user_agent: "",
+      },
+    };
+  },
+  methods: {
+    getCurrentDate() {
+      return this.clickData.clicked_at = new Date().toLocaleString();
+    },
+
+    getIpAddress() {
+      this.$http.get("https://api.ipify.org/?format=json")
+      .then((response) => response.json())
+      .then((data) => (this.clickData.ip_address = data.ip));
+    },
+
+    getUserAgent() {
+      return this.clickData.user_agent = navigator.userAgent;
+    },
+
+    submit() {
+      const apiURL = "http://localhost:3000/clicker";
+      this.counter++;
+      this.getCurrentDate();
+      this.getIpAddress();
+      this.getUserAgent();
+
+      this.$http.post(apiURL, this.clickData).then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+  },
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 50px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+button {
+  cursor: pointer;
 }
 </style>
